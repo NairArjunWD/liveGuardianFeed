@@ -26,31 +26,30 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<News>> {
 
     private NewsAdapter mAdapter;
+    private TextView internetError;
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ListView newsListView = findViewById(R.id.list_item);
-
+        ListView newsListView = findViewById(R.id.list_feed);
+//        internetError = findViewById(R.id.internet_error);
+//        newsListView.setEmptyView(internetError);
         mAdapter = new NewsAdapter(this, new ArrayList<News>());
 
-//        TextView internetError = findViewById(R.id.internet_error);
-//        newsListView.setEmptyView(internetError);
-//
-//        newsListView.setAdapter(mAdapter);
-//        newsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                News mNews = mAdapter.getItem(i);
-//                Uri newsUri = Uri.parse(mNews.getmUrl());
-//                Intent guardianIntent = new Intent(Intent.ACTION_VIEW, newsUri);
-//                startActivity(guardianIntent);
-//            }
-//        });
+
+        newsListView.setAdapter(mAdapter);
+        newsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                News mNews = mAdapter.getItem(position);
+                Uri newsUri = Uri.parse(mNews.getmUrl());
+                Intent guardianIntent = new Intent(Intent.ACTION_VIEW, newsUri);
+                startActivity(guardianIntent);
+            }
+        });
 
         // Network Connection
 
@@ -68,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         } else {
             // Else display error message
-//            internetError.setText(R.string.internet_error);
+            internetError.setText(R.string.internet_error);
         }
     }
 

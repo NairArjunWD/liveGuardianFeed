@@ -23,6 +23,8 @@ public class NewsLoader extends AsyncTaskLoader<List<News>> {
             return null;
         }
 
-        return QueryUtils.fetchNewsData(mUrl);
+
+        List<News> newsList = QueryUtils.fetchNewsData(mUrl);
+        return newsList;
     }
 }
