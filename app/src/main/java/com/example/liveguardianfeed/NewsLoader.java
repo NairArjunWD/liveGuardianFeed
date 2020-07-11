@@ -1,7 +1,10 @@
 package com.example.liveguardianfeed;
 
 import android.content.Context;
-import android.content.AsyncTaskLoader;
+
+
+import androidx.loader.content.AsyncTaskLoader;
+
 import java.util.List;
 
 public class NewsLoader extends AsyncTaskLoader<List<News>> {
