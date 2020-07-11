@@ -18,7 +18,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        // Check if the existing view is being reused, otherwise inflate the view
+
         View listItemView = convertView;
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(

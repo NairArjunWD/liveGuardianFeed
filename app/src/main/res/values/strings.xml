@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Live Guardian Feed</string>
+
+    <string name="internet_error">No Internet Connection</string>
 </resources>
