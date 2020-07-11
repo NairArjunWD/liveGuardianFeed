@@ -6,10 +6,11 @@ import java.util.List;
 
 public class NewsLoader extends AsyncTaskLoader<List<News>> {
 
-    private static String mUrl = "https://content.guardianapis.com/search?q=debate&tag=politics/politics&from-date=2014-01-01&api-key=test";
+    private String mUrl;
 
-    public NewsLoader(Context context) {
+    public NewsLoader(Context context, String url) {
         super(context);
+        mUrl = url;
     }
 
     @Override
@@ -24,7 +25,6 @@ public class NewsLoader extends AsyncTaskLoader<List<News>> {
         }
 
 
-        List<News> newsList = QueryUtils.fetchNewsData(mUrl);
-        return newsList;
+        return QueryUtils.fetchNewsData(mUrl);
     }
 }

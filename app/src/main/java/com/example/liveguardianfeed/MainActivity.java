@@ -1,7 +1,5 @@
 package com.example.liveguardianfeed;
 
-import androidx.annotation.IntRange;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
@@ -10,8 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.Network;
-import android.net.NetworkCapabilities;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,8 +21,11 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<News>> {
 
-    private NewsAdapter mAdapter;
-    private TextView internetError;
+    public static final String GUARDIAN_REQUEST_URL =
+            "https://content.guardianapis.com/search?q=debate&tag=politics/politics&from-date=2014-01-01&api-key=test";
+
+    NewsAdapter mAdapter;
+    TextView internetError;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +72,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public Loader<List<News>> onCreateLoader(int id, Bundle args) {
-        return new Loader<List<News>>(this);
+       return new NewsLoader(this, GUARDIAN_REQUEST_URL);
+
     }
 
     @Override
