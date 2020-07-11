@@ -1,5 +1,6 @@
 package com.example.liveguardianfeed;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
@@ -33,8 +34,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         setContentView(R.layout.activity_main);
 
         ListView newsListView = findViewById(R.id.list_feed);
-//        internetError = findViewById(R.id.internet_error);
-//        newsListView.setEmptyView(internetError);
+        internetError = findViewById(R.id.internet_error);
+        newsListView.setEmptyView(internetError);
         mAdapter = new NewsAdapter(this, new ArrayList<News>());
 
 
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     @Override
-    public void onLoadFinished(Loader<List<News>> loader, List<News> data) {
+    public void onLoadFinished(@NonNull Loader<List<News>> loader, List<News> data) {
         mAdapter = new NewsAdapter(this, (ArrayList<News>) data);
 
     }
