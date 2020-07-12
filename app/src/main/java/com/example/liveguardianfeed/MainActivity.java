@@ -1,10 +1,5 @@
 package com.example.liveguardianfeed;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.loader.app.LoaderManager;
-import androidx.loader.content.Loader;
-
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -12,16 +7,23 @@ import android.net.Network;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.Loader;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<News>> {
 
+    //TODO: Use a builder in onCreateLoader()
     public static final String GUARDIAN_REQUEST_URL =
             "https://content.guardianapis.com/search?q=debate&tag=politics/politics&from-date=2014-01-01&api-key=test";
 
@@ -69,17 +71,21 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             // Else display error message
             internetError.setText(R.string.internet_error);
         }
+
+        //Start the loader
+        //TODO: Check for connectivity first
+        getSupportLoaderManager().initLoader(1, null, this);
     }
 
     @Override
     public Loader<List<News>> onCreateLoader(int id, Bundle args) {
-       return new NewsLoader(this, GUARDIAN_REQUEST_URL);
+        return new NewsLoader(this, GUARDIAN_REQUEST_URL);
 
     }
 
     @Override
     public void onLoadFinished(@NonNull Loader<List<News>> loader, List<News> data) {
-        mAdapter = new NewsAdapter(this, (ArrayList<News>) data);
+        mAdapter.addAll(data);
 
     }
 
@@ -87,6 +93,4 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public void onLoaderReset(Loader<List<News>> loader) {
         mAdapter.clear();
     }
-
-
 }
