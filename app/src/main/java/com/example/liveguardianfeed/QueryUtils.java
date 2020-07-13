@@ -103,8 +103,17 @@ public class QueryUtils {
                 String date = currentNews.getString("webPublicationDate");
                 String section = currentNews.getString("sectionName");
                 String url = currentNews.getString("webUrl");
+                JSONArray tagsauthor = currentNews.getJSONArray("tags");
+                String author="";
+                if (tagsauthor.length()!= 0) {
+                    JSONObject currenttagsauthor = tagsauthor.getJSONObject(0);
+                    author = currenttagsauthor.getString("webTitle");
+                }else{
+                    author = "No Author ..";
+                }
 
-                News news = new News(title, date, section, url);
+
+                News news = new News(title, date, section, url, author);
                 newsList.add(news);
             }
 

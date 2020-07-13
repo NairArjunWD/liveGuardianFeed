@@ -13,12 +13,7 @@
         android:padding="16dp"
         android:textColor="@android:color/black"
         android:textStyle="bold"
-        tools:text="Santa Monica Pier" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="news is: " />
+        tools:text="article title" />
 
     <TextView
         android:id="@+id/news_date"
@@ -26,7 +21,7 @@
         android:layout_height="wrap_content"
         android:paddingLeft="16dp"
         android:textColor="@android:color/black"
-        tools:text="200 Santa Monica Pier, Santa Monica, CA 90401" />
+        tools:text="article time" />
 
     <TextView
         android:id="@+id/news_section"
@@ -34,6 +29,6 @@
         android:layout_height="wrap_content"
         android:paddingLeft="16dp"
         android:textColor="@android:color/black"
-        tools:text="200 Santa Monica Pier, Santa Monica, CA 90401" />
+        tools:text="article section" />
 
 </LinearLayout>

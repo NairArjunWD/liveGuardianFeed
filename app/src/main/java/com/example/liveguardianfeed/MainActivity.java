@@ -24,11 +24,15 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<News>> {
 
     //TODO: Use a builder in onCreateLoader()
+
+    public static final int NEWS_LOADER_ID = 1;
+
     public static final String GUARDIAN_REQUEST_URL =
             "https://content.guardianapis.com/search?q=debate&tag=politics/politics&from-date=2014-01-01&api-key=test";
 
     NewsAdapter mAdapter;
     TextView internetError;
+    TextView mTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         ConnectivityManager connMgr = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
 
+        mTextView = (TextView) findViewById(R.id.internet_error);
+
         // Get details on the currently active default data network
         Network networkInfo = null;
         if (connMgr != null) {
@@ -70,6 +76,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         } else {
             // Else display error message
             internetError.setText(R.string.internet_error);
+            mTextView.setVisibility(View.VISIBLE);
+            mTextView.setText(R.string.internet_error);
         }
 
         //Start the loader
@@ -79,8 +87,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public Loader<List<News>> onCreateLoader(int id, Bundle args) {
-        return new NewsLoader(this, GUARDIAN_REQUEST_URL);
-
+        Uri baseUri= Uri.parse(GUARDIAN_REQUEST_URL);
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+        uriBuilder.appendQueryParameter("show-tags", "contributor");
+        uriBuilder.appendQueryParameter("format", "json");
+        uriBuilder.appendQueryParameter("order-by", "newest");
+        uriBuilder.appendQueryParameter("page-size", "50");
+        return new NewsLoader(this, uriBuilder.toString());
     }
 
     @Override
