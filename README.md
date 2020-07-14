@@ -6,10 +6,12 @@ This project uses a Guardian News API to show a live feed of current news articl
 This app shows a live feed of the Guardian and will open an article when clicked.
 The feed displays the title, author, time, and category of each article.
 
-Live Feed
+### Live Feed
+
 <img src="https://drive.google.com/uc?export=view&id=1Bry8deHGp747C-prENShJdvvYJOyQY4q" height="500">
 
-Without Internet Connection
+### Without Internet Connection
+
 <img src="https://drive.google.com/uc?export=view&id=1rMXM1r_UfRSlxwb-LusV2rDLfcaECMeF" height="500">
 
 ## To Do
