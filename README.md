@@ -15,4 +15,6 @@ The feed displays the title, author, time, and category of each article.
 <img src="https://drive.google.com/uc?export=view&id=1rMXM1r_UfRSlxwb-LusV2rDLfcaECMeF" height="500">
 
 ## To Do
-Change the article feed to a card view and show image of the article thumbnail
+ - Change the article feed to a card view and show image of the article thumbnail
+ - Change color theme to match Guardian
+ - Make scrolling more fluid
